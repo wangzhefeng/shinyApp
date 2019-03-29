@@ -2,7 +2,10 @@
 
 library(shiny)
 library(shinydashboard)
+
 #===============================================================================
+# 标题栏
+# ==============================================================================
 header <- dashboardHeader(title = "Data Visualization", 
                           # Message drop down menu
                           dropdownMenu(type = "messages", 
@@ -61,6 +64,9 @@ header <- dashboardHeader(title = "Data Visualization",
                           # Disable header !!!
                           disable = FALSE)
 
+# ==============================================================================
+# 侧边栏
+# ==============================================================================
 sidebar <- dashboardSidebar(
     #sidebarMenu
     sidebarMenu(
@@ -80,7 +86,9 @@ sidebar <- dashboardSidebar(
     #sidebarUserPanel
     #sidebarUserPanel()
 )
-
+# ==============================================================================
+# 主体
+# ==============================================================================
 body <- dashboardBody(
     # tabItem
     tabItems(
@@ -119,8 +127,14 @@ body <- dashboardBody(
         )
     )
 )
+
+
+# ==============================================================================
+# 
 #===============================================================================
+# ui and server
 ui <- dashboardPage(header, sidebar, body)
+
 server <- function(input, output) {
     # data
     set.seed(122)
@@ -131,5 +145,10 @@ server <- function(input, output) {
         hist(data)
     })
 }
+
 #===============================================================================
+# run shinydashboard app
+# ==============================================================================
 shinyApp(ui, server)
+
+
